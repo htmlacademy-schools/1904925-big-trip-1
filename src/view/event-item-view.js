@@ -1,5 +1,5 @@
-export const createEventItemTemplate = () => (
-    `<div class="event">
+export const createEventItemTemplate = () =>
+  `<div class="event">
     <time class="event__date" datetime="2019-03-19">MAR 19</time>
     <div class="event__type">
       <img class="event__type-icon" width="42" height="42" src="img/icons/flight.png" alt="Event type icon">
@@ -38,5 +38,4 @@ export const createEventItemTemplate = () => (
     <button class="event__rollup-btn" type="button">
       <span class="visually-hidden">Open event</span>
     </button>
-  </div>`
-);
+  </div>`;
