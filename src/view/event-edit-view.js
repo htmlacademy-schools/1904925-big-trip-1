@@ -1,4 +1,4 @@
-import { ADDITIONAL_OPTIONS, WAYPOINTS } from "../constData";
+import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../constData';
 
 export const createEventEditTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
@@ -14,16 +14,16 @@ export const createEventEditTemplate = (data, citiesList) =>
           <fieldset class="event__type-group">
             <legend class="visually-hidden">Event type</legend>
             ${WAYPOINTS.map((waypoint) => {
-              const lowerWP = waypoint.toLowerCase();
-              return `
-                <div class="event__type-item">
-                  <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
-                waypoint === data.travel.waypoint ? "checked" : ""
-              }>
-                  <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
-                </div>
-            `;
-            })}
+    const lowerWP = waypoint.toLowerCase();
+    return `
+      <div class="event__type-item">
+        <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
+  waypoint === data.travel.waypoint ? 'checked' : ''
+}>
+        <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
+      </div>
+  `;
+  })}
           </fieldset>
         </div>
       </div>
@@ -33,25 +33,25 @@ export const createEventEditTemplate = (data, citiesList) =>
           ${data.travel.waypoint}
         </label>
         <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${
-          data.travel.city
-        }" list="destination-list-1">
+  data.travel.city
+}" list="destination-list-1">
         <datalist id="destination-list-1">
          ${Object.entries(citiesList)
-           .map((entry) => `<option value="${entry[0]}"></option>`)
-           .join("")}
+    .map((entry) => `<option value="${entry[0]}"></option>`)
+    .join('')}
         </datalist>
       </div>
 
       <div class="event__field-group  event__field-group--time">
         <label class="visually-hidden" for="event-start-time-1">From</label>
         <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(
-          data.travel.date.pure
-        ).toLocaleDateString("en-US")} ${data.travel.time.start}">
+    data.travel.date.pure
+  ).toLocaleDateString('en-US')} ${data.travel.time.start}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-1">To</label>
         <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(
-          data.travel.date.pure
-        ).toLocaleDateString("en-US")} ${data.travel.time.end}">
+    data.travel.date.pure
+  ).toLocaleDateString('en-US')} ${data.travel.time.end}">
       </div>
 
       <div class="event__field-group  event__field-group--price">
@@ -60,8 +60,8 @@ export const createEventEditTemplate = (data, citiesList) =>
           &euro;
         </label>
         <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${
-          data.price
-        }">
+  data.price
+}">
       </div>
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
@@ -76,27 +76,27 @@ export const createEventEditTemplate = (data, citiesList) =>
 
         <div class="event__available-offers">
           ${ADDITIONAL_OPTIONS.map(
-            (option) =>
-              `<div class="event__offer-selector">
+    (option) =>
+      `<div class="event__offer-selector">
               <input class="event__offer-checkbox  visually-hidden" id="event-offer-${
-                option.id
-              }-1" type="checkbox" name="event-offer-${option.id}"
+  option.id
+}-1" type="checkbox" name="event-offer-${option.id}"
               ${
-                data.additionalOptions.some(
-                  (adOption) => adOption.id === option.id
-                )
-                  ? 'checked'
-                  : ''
-              } >
+  data.additionalOptions.some(
+    (adOption) => adOption.id === option.id
+  )
+    ? 'checked'
+    : ''
+} >
               <label class="event__offer-label" for="event-offer-${
-                option.id
-              }-1">
+  option.id
+}-1">
                 <span class="event__offer-title">${option.title}</span>
                 &plus;&euro;&nbsp;
                 <span class="event__offer-price">${option.price}</span>
               </label>
             </div>`
-          ).join("")}
+  ).join('')}
         </div>
       </section>
 
