@@ -1,6 +1,5 @@
 import { ADDITIONAL_OPTIONS, WAYPOINTS } from "../constData";
 
-
 export const createEventEditTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
@@ -18,7 +17,9 @@ export const createEventEditTemplate = (data, citiesList) =>
               const lowerWP = waypoint.toLowerCase();
               return `
                 <div class="event__type-item">
-                  <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${waypoint === data.travel.waypoint ? "checked" : ""}>
+                  <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
+                waypoint === data.travel.waypoint ? "checked" : ""
+              }>
                   <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
                 </div>
             `;
@@ -31,7 +32,9 @@ export const createEventEditTemplate = (data, citiesList) =>
         <label class="event__label  event__type-output" for="event-destination-1">
           ${data.travel.waypoint}
         </label>
-        <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${data.travel.city}" list="destination-list-1">
+        <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${
+          data.travel.city
+        }" list="destination-list-1">
         <datalist id="destination-list-1">
          ${Object.entries(citiesList)
            .map((entry) => `<option value="${entry[0]}"></option>`)
@@ -56,7 +59,9 @@ export const createEventEditTemplate = (data, citiesList) =>
           <span class="visually-hidden">Price</span>
           &euro;
         </label>
-        <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${data.price}">
+        <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${
+          data.price
+        }">
       </div>
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
@@ -73,9 +78,19 @@ export const createEventEditTemplate = (data, citiesList) =>
           ${ADDITIONAL_OPTIONS.map(
             (option) =>
               `<div class="event__offer-selector">
-              <input class="event__offer-checkbox  visually-hidden" id="event-offer-${option.id}-1" type="checkbox" name="event-offer-${option.id}"
-              ${data.additionalOptions.some(adOption => adOption.id === option.id) ? "checked" : ""} >
-              <label class="event__offer-label" for="event-offer-${option.id}-1">
+              <input class="event__offer-checkbox  visually-hidden" id="event-offer-${
+                option.id
+              }-1" type="checkbox" name="event-offer-${option.id}"
+              ${
+                data.additionalOptions.some(
+                  (adOption) => adOption.id === option.id
+                )
+                  ? 'checked'
+                  : ''
+              } >
+              <label class="event__offer-label" for="event-offer-${
+                option.id
+              }-1">
                 <span class="event__offer-title">${option.title}</span>
                 &plus;&euro;&nbsp;
                 <span class="event__offer-price">${option.price}</span>

@@ -1,4 +1,4 @@
-import { ADDITIONAL_OPTIONS, CITIES, WAYPOINTS } from "../constData";
+import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../constData';
 
 export const createEventAddTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
@@ -13,17 +13,17 @@ export const createEventAddTemplate = (data, citiesList) =>
         <div class="event__type-list">
           <fieldset class="event__type-group">
             <legend class="visually-hidden">Event type</legend>
-              ${WAYPOINTS.map((waypoint) => {
-                const lowerWP = waypoint.toLowerCase();
-                return `
-                  <div class="event__type-item">
-                    <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
-                  waypoint === data.travel.waypoint ? "checked" : ""
-                }>
-                    <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
-                  </div>
-              `;
-              })}
+        ${WAYPOINTS.map((waypoint) => {
+          const lowerWP = waypoint.toLowerCase();
+          return `
+            <div class="event__type-item">
+              <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
+            waypoint === data.travel.waypoint ? 'checked' : ''
+          }>
+              <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
+            </div>
+        `;
+        })}
           </fieldset>
         </div>
       </div>
@@ -38,7 +38,7 @@ export const createEventAddTemplate = (data, citiesList) =>
         <datalist id="destination-list-1">
          ${Object.entries(citiesList)
            .map((entry) => `<option value="${entry[0]}"></option>`)
-           .join("")}
+           .join('')}
         </datalist>
       </div>
 
@@ -46,12 +46,12 @@ export const createEventAddTemplate = (data, citiesList) =>
         <label class="visually-hidden" for="event-start-time-1">From</label>
         <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${new Date(
           data.travel.date.pure
-        ).toLocaleDateString("en-US")} ${data.travel.time.start}">
+        ).toLocaleDateString('en-US')} ${data.travel.time.start}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-1">To</label>
         <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${new Date(
           data.travel.date.pure
-        ).toLocaleDateString("en-US")} ${data.travel.time.end}">
+        ).toLocaleDateString('en-US')} ${data.travel.time.end}">
       </div>
 
       <div class="event__field-group  event__field-group--price">
@@ -82,7 +82,7 @@ export const createEventAddTemplate = (data, citiesList) =>
                 <span class="event__offer-price">${option.price}</span>
               </label>
             </div>`
-          ).join("")}
+          ).join('')}
         </div>
       </section>
 
@@ -95,8 +95,8 @@ export const createEventAddTemplate = (data, citiesList) =>
           <div class="event__photos-container">
             <div class="event__photos-tape">
               ${citiesList[data.travel.city].photos.map(
-                (photo_url) => `
-                  <img class="event__photo" src="${photo_url}" alt="Event photo">
+                (photoUrl) => `
+                  <img class="event__photo" src="${photoUrl}" alt="Event photo">
                 `
               )}
             </div>  

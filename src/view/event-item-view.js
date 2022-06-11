@@ -10,11 +10,11 @@ export const createEventItemTemplate = (data) =>
     <div class="event__schedule">
       <p class="event__time">
         <time class="event__start-time" datetime="${
-          data.travel.date.pure + "T" + data.travel.time.start
+          [data.travel.date.pure, 'T', data.travel.time.start].join('')
         }">${data.travel.time.start}</time>
         &mdash;
         <time class="event__end-time" datetime="${
-          data.travel.date.pure + "T" + data.travel.time.end
+          [data.travel.date.pure, 'T', data.travel.time.end].join('')
         }">${data.travel.time.end}</time>
       </p>
       <p class="event__duration">${data.travel.time.duration}</p>
@@ -36,7 +36,7 @@ export const createEventItemTemplate = (data) =>
         </li>
         `
               )
-              .join("")
+              .join('')
           : `<li><span class="event__offer-title">No additional options</span></li>`
       }
     </ul>
