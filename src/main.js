@@ -5,8 +5,11 @@ import { createSiteSortTemplate } from './view/site-sort-view.js';
 // import { createEventAddTemplate } from './view/event-add-view.js';
 import { createEventEditTemplate } from './view/event-edit-view.js';
 import { createEventItemTemplate } from './view/event-item-view.js';
+import { generateMoki } from './utility/generate-moki.js';
+import { generateCitiesDesctiprion } from './utility/generate-cities-description.js';
 
 import { renderTemplate, RenderPosition } from './render.js';
+// import { INITIAL_EVENT_DATA } from './constData.js';
 
 const siteHeaderElement = document.querySelector('.page-header');
 const siteMainElement = document.querySelector('.page-main');
@@ -40,19 +43,36 @@ renderTemplate(
   RenderPosition.BEFOREEND
 );
 
-renderTemplate(
-  siteEventsListElement,
-  eventsItemWrapper(createEventEditTemplate()),
-  RenderPosition.BEFOREEND
-);
+// renderTemplate(
+//   siteEventsListElement,
+//   eventsItemWrapper(createEventAddTemplate()),
+//   RenderPosition.BEFOREEND
+// );
 
-for (let i = 0; i < 3; i++) {
+const mokiEvents = [];
+const citiesList = generateCitiesDesctiprion();
+
+for (let i = 0; i < 15; i++) {
+  mokiEvents.push(generateMoki());
+}
+
+// renderTemplate(
+//   siteEventsListElement,
+//   eventsItemWrapper(createEventAddTemplate(INITIAL_EVENT_DATA, citiesList)),
+//   RenderPosition.BEFOREEND
+// )
+
+mokiEvents.forEach((moki, index) =>
   renderTemplate(
     siteEventsListElement,
-    eventsItemWrapper(createEventItemTemplate()),
+    eventsItemWrapper(
+      !index
+        ? createEventEditTemplate(moki, citiesList)
+        : createEventItemTemplate(moki)
+    ),
     RenderPosition.BEFOREEND
-  );
-}
+  )
+);
 
 renderTemplate(
   siteEventsElement,
