@@ -1,7 +1,7 @@
 import { ADDITIONAL_OPTIONS, WAYPOINTS } from "../constData";
 import { createElement } from "../render";
 
-export const createEventEditTemplate = (data, citiesList) =>
+const createEventEditTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -110,7 +110,7 @@ export const createEventEditTemplate = (data, citiesList) =>
     </section>
   </form>`;
 
-export class EventEditTemplate {
+export default class EventEditTemplate {
   #initialData = null;
   #citiesList = null;
   #domElement = null;

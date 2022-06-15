@@ -1,11 +1,11 @@
-import { SiteMenuTemplate } from './view/site-menu-view.js';
-import { SiteFilterTemplate } from './view/site-filters-view.js';
-import { SiteSortTemplate } from './view/site-sort-view.js';
+import SiteMenuTemplate from './view/site-menu-view.js';
+import SiteFilterTemplate from './view/site-filters-view.js';
+import SiteSortTemplate from './view/site-sort-view.js';
 
 // import { EventAddTemplate } from './view/event-add-view.js';
-import { EventListTemplate } from './view/event-list-view.js';
-import { EventEditTemplate } from './view/event-edit-view.js';
-import { EventItemTemplate } from './view/event-item-view.js';
+import EventListTemplate from './view/event-list-view.js';
+import EventEditTemplate from './view/event-edit-view.js';
+import EventItemTemplate from './view/event-item-view.js';
 import { generateMock } from './utility/generate-mock.js';
 import { generateCitiesDesctiprion } from './utility/generate-cities-description.js';
 

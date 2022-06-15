@@ -107,7 +107,7 @@ ${ADDITIONAL_OPTIONS.map(
   </form>`;
 
 
-export class EventAddTemplate {
+export default class EventAddTemplate {
   #initialData = null;
   #citiesList = null;
   #domElement = null;

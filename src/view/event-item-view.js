@@ -1,6 +1,6 @@
 import { createElement } from "../render";
 
-export const createEventItemTemplate = (data) =>
+const createEventItemTemplate = (data) =>
   `<div class="event">
     <time class="event__date" datetime="${data.travel.date.pure}">${
     data.travel.date.readable
@@ -59,7 +59,7 @@ ${
     </button>
   </div>`;
 
-export class EventItemTemplate {
+export default class EventItemTemplate {
   #initialData = null;
   #domElement = null;
 

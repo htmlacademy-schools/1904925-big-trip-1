@@ -1,6 +1,6 @@
 import { createElement } from "../render";
 
-export const createSiteFilterTemplate = () =>
+const createSiteFilterTemplate = () =>
   `<form class="trip-filters" action="#" method="get">
     <div class="trip-filters__filter">
       <input id="filter-everything" class="trip-filters__filter-input  visually-hidden" type="radio" name="trip-filter" value="everything">
@@ -20,7 +20,7 @@ export const createSiteFilterTemplate = () =>
     <button class="visually-hidden" type="submit">Accept filter</button>
   </form>`;
 
-export class SiteFilterTemplate {
+export default class SiteFilterTemplate {
   #domElement = null;
 
   get element() {
