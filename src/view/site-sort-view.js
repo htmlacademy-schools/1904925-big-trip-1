@@ -1,3 +1,5 @@
+import { createElement } from "../render";
+
 export const createSiteSortTemplate = () =>
   `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
     <div class="trip-sort__item  trip-sort__item--day">
@@ -25,3 +27,24 @@ export const createSiteSortTemplate = () =>
       <label class="trip-sort__btn" for="sort-offer">Offers</label>
     </div>
   </form>`;
+
+
+export class SiteSortTemplate {
+  #domElement = null;
+
+  get element () {
+    if (this.#domElement === null) {
+      this.#domElement = createElement(this.template);
+    }
+    return this.#domElement;
+  }
+
+  get template() {
+    return createSiteSortTemplate();
+  }
+
+  removeElement() {
+    this.#domElement = null;
+  }
+}
+   

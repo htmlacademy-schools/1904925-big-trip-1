@@ -1,3 +1,5 @@
+import { createElement } from "../render";
+
 export const createSiteFilterTemplate = () =>
   `<form class="trip-filters" action="#" method="get">
     <div class="trip-filters__filter">
@@ -17,3 +19,22 @@ export const createSiteFilterTemplate = () =>
 
     <button class="visually-hidden" type="submit">Accept filter</button>
   </form>`;
+
+export class SiteFilterTemplate {
+  #domElement = null;
+
+  get element() {
+    if (this.#domElement === null) {
+      this.#domElement = createElement(this.template)
+    }
+    return this.#domElement;
+  }
+
+  get template() {
+    return createSiteFilterTemplate();
+  }
+
+  removeElement() {
+
+  }
+}
