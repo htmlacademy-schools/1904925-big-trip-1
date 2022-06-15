@@ -115,21 +115,4 @@ export const TRAVEL_TIME = [
 
 export const PRICE = ['120', '180', '200', '165', '115'];
 
-
-export const INITIAL_EVENT_DATA = {
-  travel: {
-    date: {
-      pure: '2019-05-19',
-      readable: 'MAY 19',
-    },
-    time: {
-      start: '21:00',
-      end: '23:00',
-      duration: '02H',
-    },
-    waypoint: 'Flight',
-    city: 'Amsterdam'
-  },
-  price: '0',
-  additionOptions: [],
-};
+export const EVENT_COUNT = 15;

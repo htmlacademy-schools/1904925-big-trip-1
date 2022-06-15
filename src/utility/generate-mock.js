@@ -10,7 +10,7 @@ import {
 const getRandomItem = (list) => list[Math.floor(Math.random() * list.length)];
 
 
-export const generateMoki = () => ({
+export const generateMock = () => ({
   travel: {
     date: getRandomItem(TRAVEL_DATE),
     time: getRandomItem(TRAVEL_TIME),

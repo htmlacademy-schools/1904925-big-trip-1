@@ -1,6 +1,7 @@
 import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../constData';
+import { createElement } from '../render';
 
-export const createEventAddTemplate = (data, citiesList) =>
+const createEventAddTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
     <header class="event__header">
       <div class="event__type-wrapper">
@@ -104,3 +105,30 @@ ${ADDITIONAL_OPTIONS.map(
       </section>
     </section>
   </form>`;
+
+
+export default class EventAddTemplate {
+  #initialData = null;
+  #citiesList = null;
+  #domElement = null;
+
+  constructor (data, citiesList) {
+    this.#initialData = data;
+    this.#citiesList = citiesList;
+  }
+
+  get createElement () {
+    if (this.#domElement === null) {
+      this.#domElement = createElement(this.template);
+    }
+    return this.#domElement;
+  }
+
+  get template () {
+    return createEventAddTemplate(this.#initialData, this.#citiesList)
+  }
+
+  removeElement () {
+    this.#domElement = null;
+  }
+}
