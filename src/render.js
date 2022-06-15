@@ -23,8 +23,8 @@ export const renderElement = (container, element, place) => {
     case RenderPosition.AFTEREND:
       container.after(element);
       break;
-  };
-}
+  }
+};
 
 export const createElement = (template) => {
   const newElement = document.createElement('div');
