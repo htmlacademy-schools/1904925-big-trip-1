@@ -1,26 +1,26 @@
-import { SiteMenuTemplate } from "./view/site-menu-view.js";
-import { SiteFilterTemplate } from "./view/site-filters-view.js";
-import { SiteSortTemplate } from "./view/site-sort-view.js";
+import { SiteMenuTemplate } from './view/site-menu-view.js';
+import { SiteFilterTemplate } from './view/site-filters-view.js';
+import { SiteSortTemplate } from './view/site-sort-view.js';
 
 // import { EventAddTemplate } from './view/event-add-view.js';
-import { EventListTemplate } from "./view/event-list-view.js";
-import { EventEditTemplate } from "./view/event-edit-view.js";
-import { EventItemTemplate } from "./view/event-item-view.js";
-import { generateMock } from "./utility/generate-mock.js";
-import { generateCitiesDesctiprion } from "./utility/generate-cities-description.js";
+import { EventListTemplate } from './view/event-list-view.js';
+import { EventEditTemplate } from './view/event-edit-view.js';
+import { EventItemTemplate } from './view/event-item-view.js';
+import { generateMock } from './utility/generate-mock.js';
+import { generateCitiesDesctiprion } from './utility/generate-cities-description.js';
 
-import { RenderPosition, renderElement } from "./render.js";
-import { EVENT_COUNT } from "./constData.js";
+import { RenderPosition, renderElement } from './render.js';
+import { EVENT_COUNT } from './constData.js';
 
-const siteHeaderElement = document.querySelector(".page-header");
-const siteMainElement = document.querySelector(".page-main");
+const siteHeaderElement = document.querySelector('.page-header');
+const siteMainElement = document.querySelector('.page-main');
 const siteMenuElement = siteHeaderElement.querySelector(
-  ".trip-controls__navigation"
+  '.trip-controls__navigation'
 );
 const siteFiltersElement = siteHeaderElement.querySelector(
-  ".trip-controls__filters"
+  '.trip-controls__filters'
 );
-const siteEventsElement = siteMainElement.querySelector(".trip-events");
+const siteEventsElement = siteMainElement.querySelector('.trip-events');
 const eventListTemplate = new EventListTemplate();
 const eventList = Array.from({ length: EVENT_COUNT }, generateMock);
 const citiesList = generateCitiesDesctiprion();
@@ -45,14 +45,14 @@ renderElement(
 );
 
 renderElement(
-  siteEventsElement, 
-  eventListTemplate.element, 
+  siteEventsElement,
+  eventListTemplate.element,
   RenderPosition.BEFOREEND
 );
 
 const renderEvent = (eventListElement, event) => {
   const eventItemComponent = new EventItemTemplate(event);
-  const eventEditComponent = new EventEditTemplate(event, citiesList);  
+  const eventEditComponent = new EventEditTemplate(event, citiesList);
 
   const replaceItemToForm = () => {
     eventListElement.replaceChild(eventEditComponent.element, eventItemComponent.element);
@@ -83,4 +83,4 @@ const renderEvent = (eventListElement, event) => {
   renderElement(eventListElement, eventItemComponent.element, RenderPosition.BEFOREEND);
 };
 
-eventList.map(event => renderEvent(eventListTemplate.element, event));
+eventList.map((event) => renderEvent(eventListTemplate.element, event));
