@@ -1,6 +1,6 @@
 export const createEventOptionsMarkup = (optionsList) => {
-  const createOprionMarkup = (option) => 
-  `<div class='event__offer-selector'>
+  const createOprionMarkup = (option) =>
+    `<div class='event__offer-selector'>
     <input class='event__offer-checkbox  visually-hidden' id='event-offer-${option.id}-1' type='checkbox' name='event-offer-${option.id}'>
     <label class='event__offer-label' for='event-offer-${option.id}-1'>
       <span class='event__offer-title'>${option.title}</span>

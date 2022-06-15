@@ -1,5 +1,4 @@
 import { ADDITIONAL_OPTIONS, WAYPOINTS } from "../constData";
-import { createElement } from "../render";
 import { createEventOptionsMarkup, createEventTypesMarkup } from "../utility/forms";
 import AbstractView from "./abstract-view";
 

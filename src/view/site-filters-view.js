@@ -1,5 +1,4 @@
-import { createElement } from "../render";
-import AbstractView from "./abstract-view";
+import AbstractView from './abstract-view';
 
 const createSiteFilterTemplate = () =>
   `<form class="trip-filters" action="#" method="get">

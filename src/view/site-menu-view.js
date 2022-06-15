@@ -1,5 +1,4 @@
-import { createElement } from "../render";
-import AbstractView from "./abstract-view";
+import AbstractView from './abstract-view';
 
 const createSiteMenuTemplate = () =>
   `<nav class="trip-controls__trip-tabs  trip-tabs">

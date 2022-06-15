@@ -1,5 +1,4 @@
-import { createElement } from "../render";
-import AbstractView from "./abstract-view";
+import AbstractView from './abstract-view';
 
 const createSiteSortTemplate = () =>
   `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
@@ -35,4 +34,3 @@ export default class SiteSortTemplate extends AbstractView {
     return createSiteSortTemplate();
   }
 }
-   
