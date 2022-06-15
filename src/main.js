@@ -61,6 +61,7 @@ const renderEvent = (eventListElement, event) => {
     eventListElement.replaceChild(eventItemComponent.element, eventEditComponent.element);
   };
 
+  // A "ESC" click handler has already been added
   const onEscKeyDown = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
