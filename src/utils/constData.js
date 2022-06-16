@@ -116,3 +116,9 @@ export const TRAVEL_TIME = [
 export const PRICE = ['120', '180', '200', '165', '115'];
 
 export const EVENT_COUNT = 15;
+
+export const SORT_TYPE = {
+  SORT_DAY: 'sort-day',
+  SORT_TIME: 'sort-time',
+  SORT_PRICE: 'sort-price'
+};
