@@ -74,7 +74,6 @@ if (eventList.length === 0) {
       );
     };
 
-    // A "ESC" click handler has already been added
     const onEscKeyDown = (evt) => {
       if (evt.key === 'Escape' || evt.key === 'Esc') {
         evt.preventDefault();
