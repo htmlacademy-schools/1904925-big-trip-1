@@ -5,7 +5,7 @@ import SiteSortTemplate from "../view/site-sort-view";
 import PointPresenter from "./point-presenter";
 import { updateItem } from "../utils/common";
 import {SORT_TYPE} from '../utils/const';
-import {sortTaskByDay, sortTaskByDuration, sortTaskByPrice} from '../utils/point';
+import {sortTaskByDay, sortTaskByDuration, sortTaskByPrice} from '../utils/point-sort';
 
 export default class Presenter {
   #mainElement = null;
