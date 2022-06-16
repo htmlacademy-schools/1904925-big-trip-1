@@ -6,11 +6,12 @@ import SiteSortTemplate from './view/site-sort-view.js';
 import EventListTemplate from './view/event-list-view.js';
 import EventEditTemplate from './view/event-edit-view.js';
 import EventItemTemplate from './view/event-item-view.js';
+import NoEventView from './view/no-event-view.js';
 import { generateMock } from './utility/generate-mock.js';
 import { generateCitiesDesctiprion } from './utility/generate-cities-description.js';
 
 import { RenderPosition, renderElement } from './render.js';
-import { EVENT_COUNT } from './constData.js';
+import { EVENT_COUNT } from './utility/constData.js';
 
 const siteHeaderElement = document.querySelector('.page-header');
 const siteMainElement = document.querySelector('.page-main');
@@ -25,7 +26,6 @@ const eventListTemplate = new EventListTemplate();
 const eventList = Array.from({ length: EVENT_COUNT }, generateMock);
 const citiesList = generateCitiesDesctiprion();
 
-
 renderElement(
   siteMenuElement,
   new SiteMenuTemplate().element,
@@ -38,50 +38,71 @@ renderElement(
   RenderPosition.BEFOREEND
 );
 
-renderElement(
-  siteEventsElement,
-  new SiteSortTemplate().element,
-  RenderPosition.BEFOREEND
-);
+if (eventList.length === 0) {
+  renderElement(
+    siteEventsElement,
+    new NoEventView().element,
+    RenderPosition.BEFOREEND
+  );
+} else {
+  renderElement(
+    siteEventsElement,
+    new SiteSortTemplate().element,
+    RenderPosition.BEFOREEND
+  );
 
-renderElement(
-  siteEventsElement,
-  eventListTemplate.element,
-  RenderPosition.BEFOREEND
-);
+  renderElement(
+    siteEventsElement,
+    eventListTemplate.element,
+    RenderPosition.BEFOREEND
+  );
 
-const renderEvent = (eventListElement, event) => {
-  const eventItemComponent = new EventItemTemplate(event);
-  const eventEditComponent = new EventEditTemplate(event, citiesList);
+  const renderEvent = (eventListElement, event) => {
+    const eventItemComponent = new EventItemTemplate(event);
+    const eventEditComponent = new EventEditTemplate(event, citiesList);
 
-  const replaceItemToForm = () => {
-    eventListElement.replaceChild(eventEditComponent.element, eventItemComponent.element);
+    const replaceItemToForm = () => {
+      eventListElement.replaceChild(
+        eventEditComponent.element,
+        eventItemComponent.element
+      );
+    };
+    const replaceFormToItem = () => {
+      eventListElement.replaceChild(
+        eventItemComponent.element,
+        eventEditComponent.element
+      );
+    };
+
+    const onEscKeyDown = (evt) => {
+      if (evt.key === 'Escape' || evt.key === 'Esc') {
+        evt.preventDefault();
+        replaceFormToItem();
+        document.removeEventListener('keydown', onEscKeyDown);
+      }
+    };
+
+    eventItemComponent.element
+      .querySelector('.event__rollup-btn')
+      .addEventListener('click', () => {
+        replaceItemToForm();
+        document.addEventListener('keydown', onEscKeyDown);
+      });
+
+    eventEditComponent.element
+      .querySelector('.event__save-btn')
+      .addEventListener('click', (evt) => {
+        evt.preventDefault();
+        replaceFormToItem();
+        document.removeEventListener('keydown', onEscKeyDown);
+      });
+
+    renderElement(
+      eventListElement,
+      eventItemComponent.element,
+      RenderPosition.BEFOREEND
+    );
   };
-  const replaceFormToItem = () => {
-    eventListElement.replaceChild(eventItemComponent.element, eventEditComponent.element);
-  };
 
-  // A "ESC" click handler has already been added
-  const onEscKeyDown = (evt) => {
-    if (evt.key === 'Escape' || evt.key === 'Esc') {
-      evt.preventDefault();
-      replaceFormToItem();
-      document.removeEventListener('keydown', onEscKeyDown);
-    }
-  };
-
-  eventItemComponent.element.querySelector('.event__rollup-btn').addEventListener('click', () => {
-    replaceItemToForm();
-    document.addEventListener('keydown', onEscKeyDown);
-  });
-
-  eventEditComponent.element.querySelector('.event__save-btn').addEventListener('click', (evt) => {
-    evt.preventDefault();
-    replaceFormToItem();
-    document.removeEventListener('keydown', onEscKeyDown);
-  });
-
-  renderElement(eventListElement, eventItemComponent.element, RenderPosition.BEFOREEND);
-};
-
-eventList.map((event) => renderEvent(eventListTemplate.element, event));
+  eventList.map((event) => renderEvent(eventListTemplate.element, event));
+}

@@ -1,5 +1,6 @@
 import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../constData';
-import { createElement } from '../render';
+import { createEventOptionsMarkup, createEventTypesMarkup } from '../utility/forms';
+import AbstractView from './abstract-view';
 
 const createEventAddTemplate = (data, citiesList) =>
   `<form class="event event--edit" action="#" method="post">
@@ -14,17 +15,7 @@ const createEventAddTemplate = (data, citiesList) =>
         <div class="event__type-list">
           <fieldset class="event__type-group">
             <legend class="visually-hidden">Event type</legend>
-${WAYPOINTS.map((waypoint) => {
-    const lowerWP = waypoint.toLowerCase();
-    return `
-    <div class="event__type-item">
-      <input id="event-type-${lowerWP}-1" class="event__type-input  visually-hidden" type="radio" name="event-type" value="${lowerWP}" ${
-  waypoint === data.travel.waypoint ? 'checked' : ''
-}>
-      <label class="event__type-label  event__type-label--${lowerWP}" for="event-type-${lowerWP}-1">${waypoint}</label>
-    </div>
-`;
-  })}
+            ${createEventTypesMarkup(WAYPOINTS, data.travel.waypoint)}
           </fieldset>
         </div>
       </div>
@@ -69,23 +60,7 @@ ${Object.entries(citiesList)
       <button class="event__reset-btn" type="reset">Cancel</button>
     </header>
     <section class="event__details">
-      <section class="event__section  event__section--offers">
-        <h3 class="event__section-title  event__section-title--offers">Offers</h3>
-
-        <div class="event__available-offers">
-${ADDITIONAL_OPTIONS.map(
-    (option) =>
-      `<div class="event__offer-selector">
-      <input class="event__offer-checkbox  visually-hidden" id="event-offer-${option.id}-1" type="checkbox" name="event-offer-${option.id}">
-      <label class="event__offer-label" for="event-offer-${option.id}-1">
-        <span class="event__offer-title">${option.title}</span>
-        &plus;&euro;&nbsp;
-        <span class="event__offer-price">${option.price}</span>
-      </label>
-    </div>`
-  ).join('')} 
-        </div>
-      </section>
+      ${createEventOptionsMarkup(ADDITIONAL_OPTIONS)}
 
       <section class="event__section  event__section--destination">
         <h3 class="event__section-title  event__section-title--destination">Destination</h3>
@@ -107,28 +82,16 @@ ${ADDITIONAL_OPTIONS.map(
   </form>`;
 
 
-export default class EventAddTemplate {
+export default class EventAddTemplate extends AbstractView {
   #initialData = null;
   #citiesList = null;
-  #domElement = null;
 
   constructor (data, citiesList) {
     this.#initialData = data;
     this.#citiesList = citiesList;
   }
 
-  get createElement () {
-    if (this.#domElement === null) {
-      this.#domElement = createElement(this.template);
-    }
-    return this.#domElement;
-  }
-
   get template () {
     return createEventAddTemplate(this.#initialData, this.#citiesList)
-  }
-
-  removeElement () {
-    this.#domElement = null;
   }
 }

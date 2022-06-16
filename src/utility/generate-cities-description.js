@@ -1,4 +1,4 @@
-import { CITIES, RANDOM_TEXT } from '../constData.js';
+import { CITIES, RANDOM_TEXT } from './constData.js';
 
 export const generateCitiesDesctiprion = () => {
   const getRandomPhotos = (length) =>

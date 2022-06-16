@@ -1,4 +1,5 @@
 import { createElement } from "../render";
+import AbstractView from "./abstract-view";
 
 const createEventItemTemplate = (data) =>
   `<div class="event">
@@ -59,26 +60,14 @@ ${
     </button>
   </div>`;
 
-export default class EventItemTemplate {
+export default class EventItemTemplate extends AbstractView {
   #initialData = null;
-  #domElement = null;
 
   constructor(data) {
     this.#initialData = data;
   }
 
-  get element() {
-    if (this.#domElement === null) {
-      this.#domElement = createElement(this.template);
-    }
-    return this.#domElement;
-  }
-
   get template() {
     return createEventItemTemplate(this.#initialData);
-  }
-
-  removeElement() {
-    this.#domElement = null;
   }
 }

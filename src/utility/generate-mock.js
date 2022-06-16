@@ -5,7 +5,7 @@ import {
   TRAVEL_TIME,
   ADDITIONAL_OPTIONS,
   PRICE,
-} from '../constData.js';
+} from './constData.js';
 
 const getRandomItem = (list) => list[Math.floor(Math.random() * list.length)];
 
