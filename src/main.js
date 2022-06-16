@@ -1,11 +1,14 @@
 import SiteMenuTemplate from './view/site-menu-view.js';
-import SiteFilterTemplate from './view/site-filters-view.js';
 import TripPresenter from './presenter/trip-presenter.js';
+import FilterPresenter from './presenter/filter-presenter';
 
 import { generateMock } from './utils/generate-mock.js';
 import { RenderPosition, renderElement } from './render.js';
 
 import { EVENT_COUNT } from './utils/constData.js';
+
+import PointsModel from './model/points-model.js';
+import FilterModel from './model/filter-model';
 
 const siteHeaderElement = document.querySelector('.page-header');
 const siteMainElement = document.querySelector('.page-main');
@@ -18,16 +21,30 @@ const siteFiltersElement = siteHeaderElement.querySelector(
 );
 const eventList = Array.from({ length: EVENT_COUNT }, generateMock);
 
+const pointsModel = new PointsModel();
+pointsModel.points = eventList;
+
+const filterModel = new FilterModel();
+
 renderElement(
   siteMenuElement,
-  new SiteMenuTemplate().element,
+  new SiteMenuTemplate(),
   RenderPosition.BEFOREEND
 );
 
-renderElement(
-  siteFiltersElement,
-  new SiteFilterTemplate().element,
-  RenderPosition.BEFOREEND
+const tripPresenter = new TripPresenter(
+  siteMainElement,
+  pointsModel,
+  filterModel
 );
+const filterPresenter = new FilterPresenter(siteFiltersElement, filterModel);
 
-new TripPresenter(siteMainElement).init(eventList);
+filterPresenter.init();
+tripPresenter.init();
+
+document
+  .querySelector('.trip-main__event-add-btn')
+  .addEventListener('click', (evt) => {
+    evt.preventDefault();
+    tripPresenter.createPoint();
+  });
