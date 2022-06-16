@@ -1,5 +1,5 @@
-import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../constData';
-import { createEventOptionsMarkup, createEventTypesMarkup } from '../utility/forms';
+import { ADDITIONAL_OPTIONS, WAYPOINTS } from '../utils/constData';
+import { createEventOptionsMarkup, createEventTypesMarkup } from '../utils/forms';
 import AbstractView from './abstract-view';
 
 const createEventAddTemplate = (data, citiesList) =>
