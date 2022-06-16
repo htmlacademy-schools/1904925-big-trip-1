@@ -121,4 +121,4 @@ export const SORT_TYPE = {
   SORT_DAY: 'sort-day',
   SORT_TIME: 'sort-time',
   SORT_PRICE: 'sort-price'
-}
+};
