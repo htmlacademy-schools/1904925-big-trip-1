@@ -1,148 +1,148 @@
 export const offers = () => [
   {
-    type: 'taxi',
+    type: "taxi",
     offers: [],
   },
   {
-    type: 'bus',
+    type: "bus",
     offers: [],
   },
   {
-    type: 'train',
+    type: "train",
     offers: [
       {
         id: 1,
-        title: 'Выбрать место',
+        title: "Выбрать место",
         price: 40,
       },
       {
         id: 2,
-        title: 'Повысить класс',
+        title: "Повысить класс",
         price: 180,
       },
       {
         id: 2,
-        title: 'Горячий обед',
+        title: "Горячий обед",
         price: 120,
       },
       {
         id: 3,
-        title: 'Спальное купе',
+        title: "Спальное купе",
         price: 150,
       },
       {
         id: 4,
-        title: 'дополнительный багаж',
+        title: "дополнительный багаж",
         price: 100,
       },
     ],
   },
   {
-    type: 'ship',
+    type: "ship",
     offers: [
       {
         id: 5,
-        title: 'Питание в ресторане',
+        title: "Питание в ресторане",
         price: 350,
       },
       {
         id: 6,
-        title: 'Спа-процедуры',
+        title: "Спа-процедуры",
         price: 600,
       },
       {
         id: 7,
-        title: 'Каюта с балконом',
+        title: "Каюта с балконом",
         price: 550,
       },
       {
         id: 8,
-        title: 'All-inclusive',
+        title: "All-inclusive",
         price: 900,
       },
     ],
   },
   {
-    type: 'drive',
+    type: "drive",
     offers: [
       {
         id: 9,
-        title: 'Аренда каршеринга',
+        title: "Аренда каршеринга",
         price: 450,
       },
       {
         id: 10,
-        title: 'Бензин',
+        title: "Бензин",
         price: 80,
       },
       {
         id: 11,
-        title: 'Повысить класс машины',
+        title: "Повысить класс машины",
         price: 150,
       },
     ],
   },
   {
-    type: 'flight',
+    type: "flight",
     offers: [
       {
         id: 12,
-        title: 'Выбрать место',
+        title: "Выбрать место",
         price: 50,
       },
       {
         id: 13,
-        title: 'Бизнес-класс',
+        title: "Бизнес-класс",
         price: 600,
       },
       {
         id: 14,
-        title: 'Дополнительный багаж',
+        title: "Дополнительный багаж",
         price: 150,
       },
     ],
   },
   {
-    type: 'check-in',
+    type: "check-in",
     offers: [
       {
         id: 15,
-        title: 'Завтрак в номер',
+        title: "Завтрак в номер",
         price: 150,
       },
       {
         id: 16,
-        title: 'Расширенный номер',
+        title: "Расширенный номер",
         price: 350,
       },
       {
         id: 17,
-        title: 'Персональный водитель',
+        title: "Персональный водитель",
         price: 800,
       },
     ],
   },
   {
-    type: 'sightseeing',
+    type: "sightseeing",
     offers: [
       {
         id: 18,
-        title: 'Персональный гид',
+        title: "Персональный гид",
         price: 350,
       },
       {
         id: 19,
-        title: 'Покупка сувениров',
+        title: "Покупка сувениров",
         price: 150,
       },
     ],
   },
   {
-    type: 'restaurant',
+    type: "restaurant",
     offers: [
       {
         id: 20,
-        title: 'Чаевые',
+        title: "Чаевые",
         price: 50,
       },
     ],

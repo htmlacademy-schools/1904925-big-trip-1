@@ -1,5 +1,5 @@
-import { destinations } from "../mock/destinations";
-import { offers } from "../mock/offers";
+import { destinations } from "../utils/destinations";
+import { offers } from "../utils/offers";
 import SmartView from "./smart-view";
 import {
   createOffersSectionMarkup,
@@ -10,8 +10,8 @@ import he from "he";
 
 import "../../node_modules/flatpickr/dist/flatpickr.min.css";
 
-const createPointAddTemplate = (point) => {
-  const { basePrice: price, destination, type } = point;
+const createEventAddTemplate = (event) => {
+  const { basePrice: price, destination, type } = event;
   const pointTypeLabel = type
     ? type.charAt(0).toUpperCase() + type.slice(1)
     : "";
@@ -99,20 +99,20 @@ const createPointAddTemplate = (point) => {
             </li>`;
 };
 
-export default class PointAddView extends SmartView {
+export default class EventAddView extends SmartView {
   #datepickerFrom = null;
   #datepickerTo = null;
 
-  constructor(point) {
+  constructor(event) {
     super();
-    this._data = PointAddView.createEmptyPoint(point);
+    this._data = EventAddView.createEmptyEvent(event);
 
     this.#setInnerHandlers();
     this.#setDatepicker();
   }
 
   get template() {
-    return createPointAddTemplate(this._data);
+    return createEventAddTemplate(this._data);
   }
 
   removeElement = () => {
@@ -128,8 +128,8 @@ export default class PointAddView extends SmartView {
     }
   };
 
-  reset = (point) => {
-    this.updateData(PointAddView.parsePointToData(point));
+  reset = (event) => {
+    this.updateData(EventAddView.parseEventToData(event));
   };
 
   #setDatepicker = () => {
@@ -224,7 +224,7 @@ export default class PointAddView extends SmartView {
 
   #formSubmitHandler = (evt) => {
     evt.preventDefault();
-    this._callback.formSubmit(PointAddView.parseDataToPoint(this._data));
+    this._callback.formSubmit(EventAddView.parseDataToEvent(this._data));
   };
 
   setDeleteClickHandler = (callback) => {
@@ -236,10 +236,10 @@ export default class PointAddView extends SmartView {
 
   #formDeleteClickHandler = (evt) => {
     evt.preventDefault();
-    this._callback.deleteClick(PointAddView.parseDataToPoint(this._data));
+    this._callback.deleteClick(EventAddView.parseDataToEvent(this._data));
   };
 
-  static createEmptyPoint = () => {
+  static createEmptyEvent = () => {
     const offerArray = offers();
     const date = new Date();
     return {
@@ -258,13 +258,14 @@ export default class PointAddView extends SmartView {
     };
   };
 
-  static parsePointToData = (point) => ({
-    ...point,
+  static parseEventToData = (event) => ({
+    ...event,
   });
 
-  static parseDataToPoint = (data) => {
-    const point = { ...data };
-    return point;
+  static parseDataToEvent = (data) => {
+    const event = { ...data };
+
+    return event;
   };
 
   #getChangedDestination = (destinationName) => {
