@@ -1,5 +1,10 @@
-import TripFiltersView from "../view/trip-filters-view";
-import { render, RenderPosition, replace, remove } from "../utils/render.js";
+import TripFiltersView from "../view/site-filter-view";
+import {
+  renderElement,
+  RenderPosition,
+  replaceElement,
+  removeElement,
+} from "../render.js";
 import { UpdateType } from "../utils/const";
 
 export default class FilterPresenter {
@@ -34,7 +39,7 @@ export default class FilterPresenter {
     );
 
     if (prevFilterComponent === null) {
-      render(
+      renderElement(
         this.#filterContainer,
         this.#filterComponent,
         RenderPosition.BEFOREEND
@@ -42,8 +47,8 @@ export default class FilterPresenter {
       return;
     }
 
-    replace(this.#filterComponent, prevFilterComponent);
-    remove(prevFilterComponent);
+    replaceElement(this.#filterComponent, prevFilterComponent);
+    removeElement(prevFilterComponent);
   };
 
   #handleModelEvent = () => {

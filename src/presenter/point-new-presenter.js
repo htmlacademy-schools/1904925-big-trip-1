@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
-import { remove, render, RenderPosition } from "../utils/render.js";
+import { removeElement, renderElement, RenderPosition } from "../render.js";
 import { UserAction, UpdateType } from "../utils/const";
-import PointAddView from "../view/point-add-view";
+import EventAddView from "../view/event-add-view";
 
 export default class PointNewPresenter {
   #pointListContainer = null;
@@ -18,11 +18,11 @@ export default class PointNewPresenter {
       return;
     }
 
-    this.#pointAddComponent = new PointAddView();
+    this.#pointAddComponent = new EventAddView();
     this.#pointAddComponent.setFormSubmitHandler(this.#handleFormSubmit);
     this.#pointAddComponent.setDeleteClickHandler(this.#handleDeleteClick);
 
-    render(
+    renderElement(
       this.#pointListContainer,
       this.#pointAddComponent,
       RenderPosition.AFTERBEGIN
@@ -36,7 +36,7 @@ export default class PointNewPresenter {
       return;
     }
 
-    remove(this.#pointAddComponent);
+    removeElement(this.#pointAddComponent);
     this.#pointAddComponent = null;
 
     document.removeEventListener("keydown", this.#escKeyDownHandler);

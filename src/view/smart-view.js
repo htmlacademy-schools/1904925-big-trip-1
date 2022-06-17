@@ -1,4 +1,4 @@
-import AbstractView from './abstract-view.js';
+import AbstractView from "./abstract-view.js";
 
 export default class SmartView extends AbstractView {
   _data = {};
@@ -30,6 +30,6 @@ export default class SmartView extends AbstractView {
   };
 
   restoreHandlers = () => {
-    throw new Error('Abstract method not implemented: restoreHandlers');
+    throw new Error("Abstract method not implemented: restoreHandlers");
   };
-};
+}
